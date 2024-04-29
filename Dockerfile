@@ -18,7 +18,7 @@ RUN chmod +x /app/entrypoint.sh
 RUN echo "# Default deny all" > /etc/squid-deb-proxy/mirror-dstdomain.acl
 
 # At least one package must be blacklisted or autogeneration will fail
-RUN echo "non-existent-package" > /etc/squid-deb-proxy/pkg-blacklist
+RUN echo "non-existent-package" > /etc/squid-deb-proxy/pkg-blacklist.d/20-non-existent-package
 
 # Set all files in /app/allowlists as allowed domains
 RUN mkdir -p /app/allowlists && \
