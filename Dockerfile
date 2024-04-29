@@ -22,6 +22,12 @@ RUN mkdir -p /app/allowlists && \
     rm -rf /etc/squid-deb-proxy/mirror-dstdomain.acl.d && \
     ln -sf /app/allowlists /etc/squid-deb-proxy/mirror-dstdomain.acl.d
 
+# Set correct file permissions
+RUN touch /var/log/squid-deb-proxy/access.log && \
+    touch /var/log/squid-deb-proxy/cache.log && \
+    touch /var/log/squid-deb-proxy/store.log && \
+    chown -R proxy:proxy /var/log/squid-deb-proxy
+
 EXPOSE 8000/tcp
 
 ENTRYPOINT ["/app/entrypoint.sh"]
